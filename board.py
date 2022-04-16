@@ -28,29 +28,37 @@ def place_mark(row, col, player):
         print('Position already taken')
 
 
-def check_win():
+def check_win(player):
     # Check rows
     for row in range(0, 3):
-        if board[row][0] == board[row][1] == board[row][2] == 'X':
-            print("Player 1 has won!")
-        elif board[row][0] == board[row][1] == board[row][2] == 'O':
-            print("Player 2 has won!")
+        if player == 1:
+            if board[row][0] == board[row][1] == board[row][2] == 'X':
+                return True
+        if player == 2:
+            if board[row][0] == board[row][1] == board[row][2] == 'O':
+                return True
     # Check Columns
     for col in range(0, 3):
-        if board[0][col] == board[1][col] == board[2][col] == 'X':
-            print("Player 1 has won!")
-        elif board[0][col] == board[1][col] == board[2][col] == 'O':
-            print("Player 2 has won!")
+        if player == 1:
+            if board[0][col] == board[1][col] == board[2][col] == 'X':
+                return True
+        if player == 2:
+            if board[0][col] == board[1][col] == board[2][col] == 'O':
+                return True
     # Check Diagonal 1
-    if board[0][0] == board[1][1] == board[2][2] == 'X':
-        print("Player 1 has won!")
-    elif board[0][0] == board[1][1] == board[2][2] == 'O':
-        print("Player 2 has won!")
+    if player == 1:
+        if board[0][0] == board[1][1] == board[2][2] == 'X':
+            return True
+    if player == 2:
+        if board[0][0] == board[1][1] == board[2][2] == 'O':
+            return True
     # Check Diagonal 2
-    if board[0][2] == board[1][1] == board[2][0] == 'X':
-        print("Player 1 has won!")
-    elif board[0][2] == board[1][1] == board[2][0] == 'O':
-        print("Player 2 has won!")
+    if player == 1:
+        if board[0][2] == board[1][1] == board[2][0] == 'X':
+            return True
+    if player == 1:
+        if board[0][2] == board[1][1] == board[2][0] == 'O':
+            return True
 
 
 def main():
@@ -67,7 +75,10 @@ def main():
     place_mark(1, 2, 2)
     print('Testing Winner')
     print_board()
-    check_win()
+    if check_win(1):
+        print('Player 1 has won!')
+    elif check_win(2):
+        print('Player 2 has won!')
 
 
 main()
