@@ -62,23 +62,30 @@ def check_win(player):
 
 
 def main():
-    print('Testing print_board')
-    print_board()
-    print('Before place_mark, check_mark for 1, 1 is ', check_mark(1, 1))
-    place_mark(1, 1, 1)
-    print('After place_mark, check_mark for 1, 1 is ', check_mark(1, 1))
-    place_mark(0, 2, 2)
-    print_board()
-    place_mark(0, 0, 1)
-    place_mark(2, 2, 2)
-    place_mark(1, 0, 1)
-    place_mark(1, 2, 2)
-    print('Testing Winner')
-    print_board()
-    if check_win(1):
-        print('Player 1 has won!')
-    elif check_win(2):
-        print('Player 2 has won!')
+    turn = 1
+    while not check_win(1) and not check_win(2) and turn != 10:
+        player = 1
+        if turn % 2 == 0:
+            player = 2
+        print('Player', player, '\'s turn!')
+        print_board()
+        row = int(input('Enter row: '))
+        col = int(input('Enter col: '))
+        if player == 1:
+            if check_mark(row, col):
+                turn += 1
+            place_mark(row, col, 1)
+        elif player == 2:
+            if check_mark(row, col):
+                turn += 1
+            place_mark(row, col, 2)
+        if check_win(1):
+            print('Player 1 wins!')
+        elif check_win(2):
+            print('Player 2 wins!')
+        elif turn == 10:
+            if not check_win(1) and not check_win(2):
+                print('The game is a Draw!')
 
 
 main()
