@@ -71,21 +71,24 @@ def main():
         print_board()
         row = int(input('Enter row: '))
         col = int(input('Enter col: '))
-        if (0 <= row < 4) and (0 <= col < 4):
+        if (0 <= row < 3) and (0 <= col < 3):
             if player == 1:
                 if check_mark(row, col):
                     turn += 1
                 place_mark(row, col, 1)
+                if check_win(1):
+                    print_board()
+                    print('Player 1 wins!')
             elif player == 2:
                 if check_mark(row, col):
                     turn += 1
                 place_mark(row, col, 2)
-            if check_win(1):
-                print('Player 1 wins!')
-            elif check_win(2):
-                print('Player 2 wins!')
-            elif turn == 10:
+                if check_win(2):
+                    print_board()
+                    print('Player 2 wins!')
+            if turn == 10:
                 if not check_win(1) and not check_win(2):
+                    print_board()
                     print('The game is a Draw!')
         else:
             print('Invalid row or column entered')
